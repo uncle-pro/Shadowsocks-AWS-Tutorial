@@ -1,18 +1,16 @@
 [🌏English Version](./README_en.md)
 
-**[全部文章目录](https://github.com/zhaoweih/Shadowsocks-Tutorial/wiki/%E7%9B%AE%E5%BD%95)**
-
-> 🚀安装成功后如果想加速Shadowsocks的小伙伴可以看看我这篇文章[给小白的kcptun加速shadowsocks教程](./kcptun_shadowsocks_tutorial.md)(效果很明显)
->
-> 如果过程中出现问题无法解决可以发送邮件到我邮箱zhaoweihao.dev@gmail.com  或者[提issues](https://github.com/zhaoweih/Shadowsocks-Tutorial/issues)
->
-> 如果工程师朋友们需要加速git克隆速度可以查看这篇文章[给小白的git配置shadowsocks代理加速教程](./git/git_shadowsocks_readme.md)
-
 # 前言
 
-为什么要做这个库？因为有句话说“不会翻墙的程序员不是好程序员”，但是某些原因，翻墙可是越来越难了，我之前是用某灯，但是自从上个月开始某灯也不稳定了；我还以为可以和某灯相宿相飞一段时间的，后来就投靠了Shadowsocks了，为什么会选择Shadowsocks呢，因为可以自己搭建服务器，不再受牵制，而且由于是个人服务器被封IP的几率也不会很大；当然你也可以和自己信任的人共享使用，但是Shadowsocks的教程网络上真是参次不齐，很容易误导那些只想翻墙而不是要了解它原理的人，所以我就蹦出个想法：做个几乎是一键式的傻瓜Shadowsocks（以下简称ss）搭建教程给小白们，让大家都能共享自由的互联网。
+本库主要是介绍如何使用亚马逊云服务搭建自己的Shadowsocks服务器，由于是个人服务器，一般情况下不会被封；你也可以和自己信任的人一起使用，网上Shadowsocks的教程太多而且很多已经过时，很多已经不使用不了，或者浪费了大半天时间，最后发现用不了，本教程手把手教大家从0开始，搭建一个可使用的shadowsocks服务器
 
 # 开始
+
+## 注册邮箱
+无论是使用亚马逊云（AWS) 还是微软云（Azure) 都需要有邮箱， 这里推荐使用的是Gmail 或 hotmail, 当然，国内的邮箱也可以，Gmail注册相对复杂一下，这里就以hotmail 为例子示范
+首先进入outlook首页
+
+![](./images/hotmail/1.png)
 
 ## 购买VPS服务器
 
