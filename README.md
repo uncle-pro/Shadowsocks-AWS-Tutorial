@@ -22,16 +22,18 @@
 ### 4、输入个人信息
 ![](./images/hotmail/4.png)
 
-### 5、登录邮箱，如果能登录，就是注册成功了
+### 5、注册成功,登录邮箱
 ![](./images/hotmail/5.png)
 
 ## 注册亚马逊云（AWS) 账户
 
-注册亚马逊云账户，亚马逊有新手12个月免费的套餐，所以如果你的邮箱是新的，没注册过的亚马逊的， 则有12个月免费的Ec2 使用期，还有100G的宽带流量（出网流量），如果是我们个人使用，一般都不会超的，足够我们日常使用了， 也就是说，我们能白嫖亚马逊12个月，当然12月后如果继续使用，会按使用量扣费的，如果只想白嫖，那请紧记要在免费期结束之前把实例给终止了。
+注册亚马逊云账户，亚马逊有新手12个月免费的套餐，所以如果你的邮箱是新的，没注册过的亚马逊的， 则有12个月免费的Ec2 使用期，每个月有750个小时（约31天）的服务器使用时间，还有100G的宽带流量（出网流量），如果是我们个人使用，一般都不会超的，足够我们日常使用了， 也就是说，我们能白嫖亚马逊12个月，当然12月后如果继续使用，会按使用量扣费的，如果只想白嫖，那请紧记要在免费期结束之前把实例给终止了。
 
 
 ### 1、注册并登录
 1.1 进入[亚马逊云注册首页](https://signin.aws.amazon.com/signup?request_type=register)
+
+左侧有介绍关于免费套餐的内容，可以点击进去详情， 右侧是我们注册账户需要录入的信息。
 
 ![](./images/aws/1.png)
 
@@ -79,6 +81,108 @@
 主要的是下方的AMI(系统映像)， 有很多镜像是不适用的，或者是需要安装额外的插件才能用起来的。这里试了很多AMI, 发现了还是centos7镜最好用，AMI:  ami-09e2a570cb404b37e, 在搜索框输入 ami-09e2a570cb404b37e，搜索，选择即可
 ![](./images/aws/13.png)
 ![](./images/aws/14.png)
+
+2.6 选完AMI 后，下一步是选择实例类型，点开下拉框，选择t2.micro, 可以看到，此类型的右边有标注：符合条件的免费套餐， 表明这个类型是可以使用免费套餐的，如果没有标注的， 则不能使用免费套餐， 创建之后会按时间进行收费
+![](./images/aws/15.png)
+
+2.7 接下来我们需要创建密钥对，由于新用户是没有密钥对的， 所以需要创建密钥对， 这里的密钥是用来登录服务器的，就是我们创建实例后， 可以通过xshell 等工具ssh连接到服务器上时用到的。创建时，写个名称，会自动下载到你本地，注意小心保存起来
+![](./images/aws/16.png)
+![](./images/aws/17.png)
+![](./images/aws/18.png)
+
+2.8 接下来就是网络设置，不需要动，直接使用默认的就行
+![](./images/aws/19.png)
+
+2.9 最后配置存储，就是硬盘大小， 由于免费套餐是包含30G 的， 所以我们这里更改为30GB 的硬盘，配置好后，点击右下角的启动实例按钮
+![](./images/aws/20.png)
+
+2.10 启动实例完成后，选择查看所有实例，然后点开刚创建的实例，找到实例的公网IP， 这个IP就是你的vps的公网IP。
+![](./images/aws/21.png)
+![](./images/aws/22.png)
+
+2.11 接下来，可以使用xshell 进行连接， xshell 可以去官网下载，使用上面的公网IP 进行连接， 用户名默认为：centos, 身份验证方法选择Public Key,
+密钥就使用2.7 创建的密钥后保存到本地的私钥文件即可，配置好就可以连接了
+
+![](./images/aws/23.png)
+![](./images/aws/24.png)
+
+
+### 3、搭建shadowsocks服务
+
+3.1 连接到服务器后，先变更为root用户，因为很多地方需要root权限，因为centos7已经停止维护，原来的yum源已经不可用，所以需要先变更系统的yum 源，输入以下命令：
+```
+#变更root用户
+sudo su - root
+#变更yum的源，更新为阿里的源
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
+#安装wget 
+yum install -y wget
+
+```
+![](./images/shadowsocks/1.png)
+
+3.2 下载安装shadowsocks的脚本，并执行安装
+```
+##下载脚本文件
+wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/uncle-pro/Shadowsocks-AWS-Tutorial/main/script/shadowsocks-all.sh
+
+#给脚本增加可执行的权限
+chmod +x shadowsocks-all.sh
+
+#执行脚本
+./shadowsocks-all.sh 2>&1 | tee shadowsocks-all.log
+
+```
+![](./images/shadowsocks/2.png)
+
+3.3 按脚本的提示，选择参数就行了
+
+选择服务类型，这里使用Shadowsocks-libev , 输入4 , 回车 
+![](./images/shadowsocks/3.png)
+输入密码，输入自己想要设置的密码，回车
+![](./images/shadowsocks/4.png)
+输入端口号， 自定义， 如：48898
+![](./images/shadowsocks/5.png)
+选择加密算法，这里推荐选择xchacha20-ietf-poly1305, 所以输入13， 回车
+![](./images/shadowsocks/6.png)
+
+执行过程中， 再输入两次回车即
+
+3.4 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 选择**Cloud Compute**
