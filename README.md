@@ -68,8 +68,7 @@
 2.2 进入新加坡区域后，点击EC2， 进入服务器实例配置页面
 ![](./images/aws/10.png)
 
-2.3 选择实例 
-
+2.3 选择实例
 ![](./images/aws/11.png)
 
 2.4 启动新实例
@@ -147,12 +146,45 @@ chmod +x shadowsocks-all.sh
 选择加密算法，这里推荐选择xchacha20-ietf-poly1305, 所以输入13， 回车
 ![](./images/shadowsocks/6.png)
 
-执行过程中， 再输入两次回车即
+3.4 执行过程中， 都选择默认值，直接回车（两次回车即可)，完成后会提示，并显示出来shadowsocks的连接方式，
+![](./images/shadowsocks/7.png)
 
-3.4 
+3.5 由于我们这里使用的是48898 端口，亚马逊云服务器默认是关闭所有端口访问的， 所以最后还需要回到亚马逊云控制台， 打开安全组，设置防火墙，在入站规则里添加TCP 的48898端口的
+![](./images/shadowsocks/8.png)
 
+3.6 shadowsocks 的常用命令
 
+start 启动 stop 停止 restart 重启 status 状态
+```
+/etc/init.d/shadowsocks-libev start
+/etc/init.d/shadowsocks-libev stop
+/etc/init.d/shadowsocks-libev restart
+/etc/init.d/shadowsocks-libev status
+```
+卸载命令
+```
+./shadowsocks-all.sh uninstall
+```
 
+### 4、安装shadowsocks 客户端
+
+4.1 下载 PC 端的客户端或手机端的客户端， 安装后按提示配置连接信息，在需要翻墙的时候，先连接shadowsocks ，你的设备就能通过亚马逊云的EC2 服务器进行翻墙访问了
+
+下面是各个终端的下载地址（用过Windows,MAC,Android,IOS操作起来都是差不多的）：
+
+Windows：https://github.com/shadowsocks/shadowsocks-windows/releases
+
+Android:https://github.com/shadowsocks/shadowsocks-android/releases
+
+MAC:https://github.com/shadowsocks/ShadowsocksX-NG/releases
+
+Linux:https://github.com/shadowsocks/shadowsocks-qt5/wiki/Installation
+
+IOS:
+
+由于国区APP下架VPN类APP，包括支持ss类的APP，所以需要切换账号
+
+建议注册一个国外账号，不要国内账号换区，这样既可以需要下载国内APP时切换国区账号，需要下载国外APP时切换外区账号。
 
 
 
