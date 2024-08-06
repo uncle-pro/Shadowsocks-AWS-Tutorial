@@ -6,20 +6,21 @@
 
 ## 注册邮箱
 
-无论是使用亚马逊云（AWS) 还是微软云（Azure) 都需要使用邮箱， 这里推荐使用的是Gmail 或 hotmail, 当然，国内的邮箱也可以，Gmail注册相对复杂一下，这里就以hotmail 为例子示范
+无论是使用亚马逊云（AWS) 还是微软云（Azure) 都需要使用邮箱， 这里推荐使用的是Gmail 或 Hotmail, 当然，国内的邮箱也可以，Gmail注册相对复杂一下，这里就以Hotmail 示范
 
 ### 1、进入首页，
 
 首先进入 [Outlook 首页](https://www.microsoft.com/zh-cn/microsoft-365/outlook/email-and-calendar-software-microsoft-outlook)
+
 点击创建免费账户进行注册
 ![](./images/hotmail/1.png)
 
-### 2、填为邮件名，选择 @hotmail.com
+### 2、填入需要创建的邮件名，右侧下拉框选择 @hotmail.com
 ![](./images/hotmail/2.png)
 
-### 3、输入密码
+### 3、创建密码，最好复杂一点
 ![](./images/hotmail/3.png)
-### 4、输入个人信息
+### 4、输入个人信息，最好用英文，或你名字的拼音
 ![](./images/hotmail/4.png)
 
 ### 5、注册成功,登录邮箱
